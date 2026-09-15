@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="arm" params="prefix side">
+    <link name="${prefix}_shoulder_stub"><inertial><mass value="0.2"/><xacro:sphere_inertia mass="0.2" radius="0.04"/></inertial><visual><geometry><sphere radius="0.04"/></geometry><material name="grey"/></visual><collision><geometry><sphere radius="0.04"/></geometry></collision></link>
+    <joint name="${prefix}_shoulder_pitch" type="revolute"><parent link="torso"/><child link="${prefix}_shoulder_stub"/><origin xyz="0 ${side * 0.18} 0.32" rpy="0 0 0"/><axis xyz="0 1 0"/><limit lower="-3.14" upper="1.57" effort="30" velocity="3"/><dynamics damping="0.2" friction="0.05"/></joint>
+    <link name="${prefix}_upper_arm"><inertial><origin xyz="0 0 ${-arm_length/2}"/><mass value="1.0"/><xacro:cylinder_inertia mass="1.0" radius="0.035" length="${arm_length}"/></inertial><visual><origin xyz="0 0 ${-arm_length/2}"/><geometry><cylinder radius="0.035" length="${arm_length}"/></geometry><material name="blue"/></visual><collision><origin xyz="0 0 ${-arm_length/2}"/><geometry><cylinder radius="0.035" length="${arm_length}"/></geometry></collision></link>
+    <joint name="${prefix}_shoulder_roll" type="revolute"><parent link="${prefix}_shoulder_stub"/><child link="${prefix}_upper_arm"/><axis xyz="1 0 0"/><limit lower="-1.57" upper="1.57" effort="30" velocity="3"/><dynamics damping="0.2" friction="0.05"/></joint>
+    <link name="${prefix}_forearm"><inertial><origin xyz="0 0 ${-arm_length/2}"/><mass value="0.7"/><xacro:cylinder_inertia mass="0.7" radius="0.03" length="${arm_length}"/></inertial><visual><origin xyz="0 0 ${-arm_length/2}"/><geometry><cylinder radius="0.03" length="${arm_length}"/></geometry><material name="skin"/></visual><collision><origin xyz="0 0 ${-arm_length/2}"/><geometry><cylinder radius="0.03" length="${arm_length}"/></geometry></collision></link>
+    <joint name="${prefix}_elbow" type="revolute"><parent link="${prefix}_upper_arm"/><child link="${prefix}_forearm"/><origin xyz="0 0 ${-arm_length}"/><axis xyz="1 0 0"/><limit lower="0" upper="2.35" effort="20" velocity="3"/><dynamics damping="0.15" friction="0.03"/></joint>
+    <link name="${prefix}_hand"><inertial><mass value="0.3"/><xacro:box_inertia mass="0.3" x="0.06" y="0.04" z="0.10"/></inertial><visual><geometry><box size="0.06 0.04 0.10"/></geometry><material name="skin"/></visual><collision><geometry><box size="0.06 0.04 0.10"/></geometry></collision></link>
+    <joint name="${prefix}_wrist" type="fixed"><parent link="${prefix}_forearm"/><child link="${prefix}_hand"/><origin xyz="0 0 -0.25"/></joint>
+  </xacro:macro>
+</robot>
