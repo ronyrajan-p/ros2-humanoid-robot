@@ -1,0 +1,32 @@
+# Standing-pose targets consumed by the `stand_pose_publisher` node
+# (robot_description/stand_pose.py, executable name `stand_pose`).
+#
+# The top-level key MUST be the node's runtime name ("stand_pose_publisher",
+# set via super().__init__(...) in stand_pose.py) -- not the controller name
+# and not the executable name. gazebo.launch.py passes this file to the node
+# via its `parameters` argument, so editing the angles below is enough to
+# retune the posture; no code change is required.
+#
+# Keep this joint list in sync with config/controllers.yaml and
+# moveit/moveit_controllers.yaml.
+stand_pose_publisher:
+  ros__parameters:
+    stand_positions:
+      waist_joint: 0.0
+      neck_joint: 0.0
+      left_shoulder_pitch: 0.2
+      left_shoulder_roll: 0.0
+      left_elbow: 0.4
+      right_shoulder_pitch: 0.2
+      right_shoulder_roll: 0.0
+      right_elbow: 0.4
+      left_hip_yaw: 0.0
+      left_hip_roll: 0.0
+      left_hip_pitch: -0.15
+      left_knee: 0.30
+      left_ankle_pitch: -0.15
+      right_hip_yaw: 0.0
+      right_hip_roll: 0.0
+      right_hip_pitch: -0.15
+      right_knee: 0.30
+      right_ankle_pitch: -0.15

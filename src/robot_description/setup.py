@@ -25,22 +25,35 @@ setup(
         # Launch files (.launch.py only)
         (os.path.join('share', package_name, 'launch'),
             glob('launch/*.launch.py')),
+
+        # RViz configs
+        (os.path.join('share', package_name, 'rviz'),
+            glob('rviz/*.rviz')),
+
+        (os.path.join('share', package_name, 'config'),
+            glob('config/*.yaml')),
+
+        (os.path.join('share', package_name, 'moveit'),
+            glob('moveit/*')),
     ],
 
     install_requires=['setuptools'],
     zip_safe=True,
 
-    maintainer='evolve06',
-    maintainer_email='evolve06@todo.todo',
+    maintainer='rony',
+    maintainer_email='199137478+ronyrajan-p@users.noreply.github.com',
 
-    description='Robot description package with URDF and launch files',
-    license='Apache-2.0',
+    description='ROS 2 simulation and autonomy stack for a custom humanoid robot',
+    license='MIT',
 
     extras_require={
         'test': ['pytest'],
     },
 
     entry_points={
-        'console_scripts': [],
+        'console_scripts': [
+            'stand_pose = robot_description.stand_pose:main',
+            'object_detector = robot_description.object_detector:main',
+        ],
     },
 )

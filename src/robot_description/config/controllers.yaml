@@ -1,0 +1,37 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    humanoid_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+humanoid_trajectory_controller:
+  ros__parameters:
+    joints:
+      - waist_joint
+      - neck_joint
+      - left_shoulder_pitch
+      - left_shoulder_roll
+      - left_elbow
+      - right_shoulder_pitch
+      - right_shoulder_roll
+      - right_elbow
+      - left_hip_yaw
+      - left_hip_roll
+      - left_hip_pitch
+      - left_knee
+      - left_ankle_pitch
+      - right_hip_yaw
+      - right_hip_roll
+      - right_hip_pitch
+      - right_knee
+      - right_ankle_pitch
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+    allow_partial_joints_goal: false
+    state_publish_rate: 50.0
+    action_monitor_rate: 20.0
+    constraints:
+      stopped_velocity_tolerance: 0.05
+      goal_time: 2.0
