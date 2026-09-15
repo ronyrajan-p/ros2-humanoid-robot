@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="humanoid_robot">
+  <group name="left_arm"><chain base_link="torso" tip_link="left_hand"/></group>
+  <group name="right_arm"><chain base_link="torso" tip_link="right_hand"/></group>
+  <group name="upper_body"><group name="left_arm"/><group name="right_arm"/><joint name="waist_joint"/><joint name="neck_joint"/></group>
+  <!-- parent_link must match each chain's own tip_link (left_hand / right_hand
+       above) since left_hand/right_hand is that same group's last link, not a
+       separate effector group attached partway down the arm. -->
+  <end_effector name="left_hand" parent_link="left_hand" group="left_arm" parent_group="upper_body"/>
+  <end_effector name="right_hand" parent_link="right_hand" group="right_arm" parent_group="upper_body"/>
+  <disable_collisions link1="torso" link2="left_shoulder_stub" reason="Adjacent"/>
+  <disable_collisions link1="torso" link2="right_shoulder_stub" reason="Adjacent"/>
+</robot>

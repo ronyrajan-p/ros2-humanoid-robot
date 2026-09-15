@@ -1,0 +1,9 @@
+default_velocity_scaling_factor: 0.2
+default_acceleration_scaling_factor: 0.2
+joint_limits:
+  left_shoulder_pitch: {has_velocity_limits: true, max_velocity: 3.0, has_acceleration_limits: true, max_acceleration: 2.0}
+  left_shoulder_roll: {has_velocity_limits: true, max_velocity: 3.0, has_acceleration_limits: true, max_acceleration: 2.0}
+  left_elbow: {has_velocity_limits: true, max_velocity: 3.0, has_acceleration_limits: true, max_acceleration: 2.0}
+  right_shoulder_pitch: {has_velocity_limits: true, max_velocity: 3.0, has_acceleration_limits: true, max_acceleration: 2.0}
+  right_shoulder_roll: {has_velocity_limits: true, max_velocity: 3.0, has_acceleration_limits: true, max_acceleration: 2.0}
+  right_elbow: {has_velocity_limits: true, max_velocity: 3.0, has_acceleration_limits: true, max_acceleration: 2.0}
